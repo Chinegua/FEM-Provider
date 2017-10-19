@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity {
 
     static final String LOG_TAG = "MiW";
 
     RepositorioClientes db;
+    ArrayList<Cliente> clientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +24,8 @@ public class MainActivity extends Activity {
 
         long id = db.add("C1", "1234567X", 11111, "c1@xyz.com", true);
         Log.i(LOG_TAG, "Número cliente = " + String.valueOf(id));
+
+        clientes = db.getAll();
+        Log.i(LOG_TAG, "Clientes = " + clientes);
     }
 }

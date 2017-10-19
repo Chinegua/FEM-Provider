@@ -2,9 +2,12 @@ package es.upm.miw.clientedb;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 import static es.upm.miw.clientedb.ClienteContract.tablaCliente;
 
@@ -71,9 +74,9 @@ public class RepositorioClientes extends SQLiteOpenHelper {
     }
 
     /**
-     * Devuelve el n&uacute;mero de entidades en la tabla
+     * Devuelve el n&uacute;mero de Clientees en la tabla
      *
-     * @return N&uacute;mero de entidades
+     * @return N&uacute;mero de Clientees
      */
     public long count() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -82,7 +85,7 @@ public class RepositorioClientes extends SQLiteOpenHelper {
 
 
     /**
-     * A&ntilde;ade una nueva entidad a la tabla
+     * A&ntilde;ade una nueva Cliente a la tabla
      *
      * @param nombre      Nombre del cliente
      * @param dni         DNI del cliente
@@ -108,4 +111,42 @@ public class RepositorioClientes extends SQLiteOpenHelper {
         // Realiza la inserción
         return db.insert(tablaCliente.TABLE_NAME, null, valores);
     }
+
+
+    /**
+     * Recupera todos las Clientes de la tabla
+     *
+     * @return array de Clientes
+     */
+    public ArrayList<Cliente> getAll() {
+        String consultaSQL = "SELECT * FROM " + tablaCliente.TABLE_NAME;
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+        // Accedo a la DB en modo lectura
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(consultaSQL, null);
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Cliente cliente = new Cliente(
+                        cursor.getInt(cursor.getColumnIndex(tablaCliente.COL_NAME_ID)),
+                        cursor.getString(cursor.getColumnIndex(tablaCliente.COL_NAME_NOMBRE)),
+                        cursor.getString(cursor.getColumnIndex(tablaCliente.COL_NAME_DNI)),
+                        cursor.getInt(cursor.getColumnIndex(tablaCliente.COL_NAME_TLF)),
+                        cursor.getString(cursor.getColumnIndex(tablaCliente.COL_NAME_EMAIL)),
+                        cursor.getInt(cursor.getColumnIndex(tablaCliente.COL_NAME_CHECK)) != 0
+                );
+
+                listaClientes.add(cliente);
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+        db.close();
+
+        return listaClientes;
+    }
+
+
 }

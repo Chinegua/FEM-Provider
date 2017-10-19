@@ -76,6 +76,18 @@ public class Cliente implements Parcelable {
     }
 
     @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono=" + telefono +
+                ", email='" + email + '\'' +
+                ", verificado=" + verificado +
+                '}';
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
