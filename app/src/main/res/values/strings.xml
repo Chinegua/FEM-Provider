@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ClienteDB</string>
+    <string name="app_name">[MiW] ClienteDB</string>
+
+    <string name="altImagenBoolean">[IMG]</string>
 </resources>

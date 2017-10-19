@@ -3,6 +3,7 @@ package es.upm.miw.clientedb;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -27,5 +28,12 @@ public class MainActivity extends Activity {
 
         clientes = db.getAll();
         Log.i(LOG_TAG, "Clientes = " + clientes);
+
+        ListView lvClientes = (ListView) findViewById(R.id.lvListadoClientes);
+        lvClientes.setAdapter(
+                new ClienteAdapter(
+                        getApplicationContext(),
+                        clientes
+                ));
     }
 }
