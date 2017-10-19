@@ -2,4 +2,11 @@
     <string name="app_name">[MiW] ClienteDB</string>
 
     <string name="altImagenBoolean">[IMG]</string>
+    <string name="txtTextViewId">"Id: "</string>
+    <string name="txtTextViewNombre">"Nombre: "</string>
+    <string name="txtTextViewDNI">"DNI: "</string>
+    <string name="txtTextViewTlf">"Teléfono: "</string>
+    <string name="txtTextViewEmail">"e-mail: "</string>
+    <string name="txtTextViewCheck">"Verificado: "</string>
+
 </resources>

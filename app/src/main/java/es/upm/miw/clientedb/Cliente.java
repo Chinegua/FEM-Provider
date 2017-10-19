@@ -15,12 +15,12 @@ public class Cliente implements Parcelable {
     /**
      * Constructor
      *
-     * @param id
-     * @param nombre
-     * @param dni
-     * @param telefono
-     * @param email
-     * @param verificado
+     * @param id        Identificador
+     * @param nombre    Nombre
+     * @param dni       DNI
+     * @param telefono  Teléfono
+     * @param email     E-mail
+     * @param verificado    Check
      */
     public Cliente(int id, String nombre, String dni, int telefono, String email, boolean verificado) {
         this.id = id;
