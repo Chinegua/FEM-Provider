@@ -15,7 +15,7 @@ final public class ClienteContract {
         static final String COL_NAME_DNI      = "dni";
         static final String COL_NAME_TLF      = "telefono";
         static final String COL_NAME_EMAIL    = "email";
-        static final String COL_NAME_CHECK    = "check";
+        static final String COL_NAME_CHECK    = "verificado";
     }
 
 }
