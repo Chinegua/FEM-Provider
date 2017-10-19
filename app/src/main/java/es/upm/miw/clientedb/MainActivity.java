@@ -18,5 +18,8 @@ public class MainActivity extends Activity {
         db = new RepositorioClientes(getApplicationContext());
         long numElementos = db.count();
         Log.i(LOG_TAG, "Número elementos = " + String.valueOf(numElementos));
+
+        long id = db.add("C1", "1234567X", 11111, "c1@xyz.com", true);
+        Log.i(LOG_TAG, "Número cliente = " + String.valueOf(id));
     }
 }

@@ -1,5 +1,6 @@
 package es.upm.miw.clientedb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -80,4 +81,31 @@ public class RepositorioClientes extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * A&ntilde;ade una nueva entidad a la tabla
+     *
+     * @param nombre      Nombre del cliente
+     * @param dni         DNI del cliente
+     * @param telefono    Tlf. del cliente
+     * @param email       Correo electr&oacute;nico del cliente
+     * @param verificado  &iquest;est&aacute; la verificado el email?
+     * @return Identificador del cliente insertado (-1 si no se ha insertado)
+     */
+    public long add(String nombre, String dni, int telefono,
+                     String email, boolean verificado) {
+
+        // Obtiene la DB en modo escritura
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Mapa de valores: parejas nombreColumna:valor
+        ContentValues valores = new ContentValues();
+        valores.put(tablaCliente.COL_NAME_NOMBRE, nombre);
+        valores.put(tablaCliente.COL_NAME_DNI, dni);
+        valores.put(tablaCliente.COL_NAME_TLF, telefono);
+        valores.put(tablaCliente.COL_NAME_EMAIL, email);
+        valores.put(tablaCliente.COL_NAME_CHECK, (verificado) ? 1 : 0);
+
+        // Realiza la inserción
+        return db.insert(tablaCliente.TABLE_NAME, null, valores);
+    }
 }
